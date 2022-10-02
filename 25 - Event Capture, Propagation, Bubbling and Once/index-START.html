@@ -42,7 +42,16 @@
 
 <button></button>
 <script>
+  const divs = document.querySelectorAll('div');
 
+  function logText(e) {
+    console.log(this.classList.value);
+    e.stopPropagation();  // Stop bubbling this event up
+  }
+
+  divs.forEach(div => div.addEventListener('click', logText, {
+    capture: false,  // Calls function on the way down, not up
+  }));
 </script>
 </body>
 </html>
